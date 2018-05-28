@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+clear
+#Couleur rouge
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+NC='\033[0m'
+BOLD='\033[0;1m'
+FLICKER='\033[0;5m'
+BACKGROUND='\033[0;43m'
+
+#Verifier espace libre
+DISQUE=$(df --output=avail -h / | grep '[0-9]')
+echo -e "${BACKGROUND}${RED}$DISQUE ${BLUE}de libre${NC}"
+sleep 1
+
+#Definir interval de playlist
+echo -e ">Entrer numero pour start"
+read interval1
+sleep 1
+echo -e ">Entrer numero pour interval"
+read interval0
+sleep 1
+let "interval2 = interval1 + interval0"
+echo -e "Telechargement youtube en cours : $interval1 à $interval2"
+
+for test in {0..30} ; do
+	clear
+	/usr/local/bin/youtube-dl -o "/root/youtube-dl/favoris/%(title)s.%(ext)s" -w --newline --download-archive archive5.txt https://www.youtube.com/playlist?list=LLEM9_KYOlQm7yAG9KZe2buQ --match-filter "duration < 4000" --ignore-errors --playlist-start $interval1 --playlist-end $interval2 -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'
+	DISQUE=$(df --output=avail -h / | grep '[0-9]')
+	echo -e "${PURPLE}$DISQUE de libre${NC}"
+	read -p ">Appuyer sur entrée pour continuer"
+	let "interval1 = interval1 + interval0"
+	let "interval2 = interval2 + interval0"
+	clear
+	clear
+done
