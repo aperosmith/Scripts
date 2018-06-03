@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Pull les fichiers pour Minecraft
+# cd /home/minecraft/fritecraft && git pull
+
+# Pull les fichiers pour le portfolio
+cd /var/www_cv && git pull
+
+# Pull les fichiers pour le site de ecommerce
+# cd /var/www_commerce && git pull
