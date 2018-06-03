@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /home/minecraft/fritecraft/ && git add .
+cd /home/minecraft/fritecraft/ && git commit -a -m "Commit quotidien `date`"
+cd /home/minecraft/fritecraft/ && git push origin Production
