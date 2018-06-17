@@ -4,7 +4,10 @@
 # cd /home/minecraft/fritecraft && git pull
 
 # Pull les fichiers pour le portfolio
-cd /var/www_cv && git pull
+cd /var/www_cv && git pull https://github.com/Ventouz/Portfolio
 
 # Pull les fichiers pour le site de ecommerce
 # cd /var/www_commerce && git pull
+
+# Pull les scripts
+cd /root/Scripts/ && git pull https://github.com/Ventouz/Scripts
