@@ -4,10 +4,12 @@
 # cd /home/minecraft/fritecraft && git pull
 
 # Pull les fichiers pour le portfolio
-cd /var/www_cv && git pull https://github.com/Ventouz/Portfolio >> /var/log/cron/github_porfolio 2>&1
+echo "$(date +%y/%m/%d-%Hh%M)" >> /var/log/cron/github_portfolio
+cd /var/www_cv && git pull https://github.com/Ventouz/Portfolio >> /var/log/cron/github_portfolio 2>&1
 
 # Pull les fichiers pour le site de ecommerce
 # cd /var/www_commerce && git pull
 
 # Pull les scripts
+echo "$(date +%y/%m/%d-%Hh%M)" >> /var/log/cron/github_scripts
 cd /root/Scripts/ && git pull https://github.com/Ventouz/Scripts >> /var/log/cron/github_scripts 2>&1
