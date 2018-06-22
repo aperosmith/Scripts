@@ -1,0 +1,19 @@
+#!/bin/bash
+declare A
+echo -e "Veuillez saisir le nombre A :"
+read A
+
+declare B
+echo -e "Veuillez saisir le nombre B :"
+read B
+
+declare C
+#C=$((A + B))
+
+C=$A
+A=$B
+B=$C
+
+echo -e "A = $A"
+echo -e "B = $B"
+echo -e "C = $C"

@@ -1,0 +1,6 @@
+#!/bin/bash
+while (( 1 != 0 ))
+do
+   echo "$A"
+   let "A = A + 1"
+done
