@@ -166,6 +166,10 @@ alias make5mb='mkfile 5m ./5MB.dat'         # make5mb:      Creates a file of 5m
 alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10mb size (all zeros)
 
 
+alias memHogsTop='top -l 1 -o rsize | head -20'
+alias memHogsPs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
+alias topForever='top -l 9999999 -s 10 -o cpu'
+
 #-------------------------------------------------------------
 # Functions
 #-------------------------------------------------------------
