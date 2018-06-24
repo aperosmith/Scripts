@@ -29,7 +29,7 @@ if [ $DISQUE -gt 20 ]
 then
         #Compresser le serveur
         echo -e "${BLUE} Compression des plugins en cours... ${NC}"
-        #tar -czvf $backup_path/backup_server-"$date.tar.gz" /home/minecraft/fritecraft/ \
+        tar -czvf $backup_path/backup_server-"$date.tar.gz" /home/minecraft/fritecraft/ \
         --exclude 'tiles/*' \
         --exclude '_worlds-archives/*' \
         --exclude '.git/*' \
