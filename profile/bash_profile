@@ -1,0 +1,272 @@
+#-------------------------------------------------------------
+# John custom .bash_profile
+#-------------------------------------------------------------
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# Check version of BASH
+if [ "${BASH_VERSION%.*}" \< "4.4" ]; then
+    echo "You need to upgrade your bash."
+fi
+
+
+
+#-------------------------------------------------------------
+# Some settings
+#-------------------------------------------------------------
+
+#set -o nounset
+#set -o xtrace
+
+ulimit -S -c 0      # No coredumps.
+set -o notify
+set -o noclobber
+set -o ignoreeof
+
+# Enable options:
+shopt -s extglob        # Necessary.
+shopt -s cdspell
+shopt -s cdable_vars
+shopt -s checkhash
+shopt -s checkwinsize
+shopt -s sourcepath
+shopt -s no_empty_cmd_completion
+shopt -s cmdhist
+shopt -s histappend histreedit histverify
+shopt -s nullglob
+
+# Disable options:
+shopt -u mailwarn
+unset MAILCHECK        # Don't want my shell to warn me of incoming mail.
+
+
+
+#-------------------------------------------------------------
+# Global Variables
+#-------------------------------------------------------------
+
+# Do echo after each command
+export PROMPT_COMMAND=''
+
+# Editor
+export VISUAL=nano
+export EDITOR="$VISUAL"
+
+# Path
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=~/bin:$PATH
+export PATH=/opt/metasploit-framework/bin:$PATH #Msconsole
+
+# Personal folders
+export web=/Applications/MAMP/htdocs
+export coding=~/coding
+export hub=~/Documents/GitHub/
+export logs=/var/log
+export frite=/home/minecraft/fritecraft
+
+
+
+#-------------------------------------------------------------
+# Text and colors
+#-------------------------------------------------------------
+
+# Shell colors
+export TERM=xterm-color
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+export CLICOLOR=1
+#export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33'
+export LS_COLORS='GxFxCxDxBxegedabagaced'
+
+# Colors
+export White='\e[1;37m'
+export Black='\e[0;30m'
+export Blue='\e[0;34m'
+export Green='\e[0;32m'
+export Cyan='\e[0;36m'
+export Red='\e[0;31m'
+export Purple='\e[0;35m'
+export Brown='\e[0;33m'
+export Yellow='\e[1;33m'
+export Grey='\e[0;30m'
+
+# Light colors
+export LGreen='\e[1;32m'
+export LCyan='\e[1;36m'
+export LRed='\e[1;31m'
+export LPurple='\e[1;35m'
+export LGrey='\e[1;30m'
+export LBlue='\e[1;34m'
+
+# Reset
+export NC='\e[39m' # No Color
+
+# LESS man page colors (makes Man pages more readable).
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+
+
+#-------------------------------------------------------------
+# Alias
+#-------------------------------------------------------------
+
+# Custom aliases
+alias l='ls -AF'		# Sort by hidden files and show info
+alias ll='ls -AFg'		# Sort by hidden file
+
+alias lk='ls -AFgSr'	# Sort by size, biggest last.
+alias lt='ls -AFgtr'	# Sort by date, most recent last.
+alias lc='ls -ltcr'		# Sort by/show change time,most recent last.
+alias lu='ls -ltur'		# Sort by/show access time,most recent last.
+alias lr='ls -RAl'		# Recursive ls show hidden files and info
+
+alias cp='cp -v'		# Copy vebose mode
+alias cpr='cp -v -r'	# Copy a directory verbose
+alias mv='mv -v -f'		# Move vebose
+alias rm='rm -v -f'     # Remove verbose without asking
+alias rmr='rm -v -r -f'	# Remove directory verbose
+
+alias o='subl'			# Open sublime
+
+alias ..='cd ..'		# Go back to previous directory
+
+alias k='kill $!'       # Kill lhe last process opened
+
+alias c='clear'         # Clear the screen
+
+alias root='sudo -i'    # Root shell
+
+
+
+#-------------------------------------------------------------
+# Functions
+#-------------------------------------------------------------
+
+# Find a file with a pattern in name
+function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
+
+
+# Creates an archive (*.tar.gz) from given directory.
+function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+
+
+# Create a ZIP archive of a file or folder.
+function makezip() { zip -r "${1%%/}.zip" "$1" ; }
+
+
+# Make your directories and files access rights sane.
+function sanitize() { chmod -R u=rwX,g=rX,o= "$@" ;}
+
+
+# When Sudo won't find the binary
+function mydo()
+{
+	echo Executing sudo with: "$1" "${@:2}"
+	sudo $(which $1) "${@:2}"
+}
+
+
+# Function to run upon exit of shell.
+function _exit()
+{
+    printf "$Green Goodbye 0ero1ne...${NC}\n\n"
+    sleep 1
+}
+trap _exit EXIT
+
+
+# Update bash_profile
+function refresh()
+{
+    clear
+    printf "\n$Green Profile updated.\n"
+    source $HOME/.bash_profile
+    rm $HOME/.bash_profile~ > /dev/null 2>&1
+}
+
+
+# Play song
+function play()
+{
+    afplay "/Users/zero-one/Music/shell/m83_intro.mp3" &
+    disown $! >/dev/null
+    song=$!
+} &> /dev/null
+
+
+# Stop song
+function stop()
+{
+    k $song
+}
+
+
+# Create standard .sh file
+function msh()
+{
+    if [ "$1" ]; then
+        if [ ! -f "$1.sh" ]; then
+            printf "${Green}Creating ${NC}$1\n"
+            echo "#!/usr/local/bin/bash" > $1
+            echo "# " >> $1
+            chmod +x $1
+            o $1
+        else
+            printf "${Green}File already exist.\n"
+        fi
+    else
+        printf "${Green}Give me a filename.\n"
+    fi
+}
+
+
+#-------------------------------------------------------------
+# Greetings
+#-------------------------------------------------------------
+
+# Title bar black
+echo -n -e "\033]6;;bg;black;brightness;100\a"
+TITLEBAR='\[\033]0;[\u] - [${SHELL} - \V]\007\]'
+
+# Powered by the cow
+#printf "$Green$(cowsay -f eyes '0ero1ne')${NC} \n\n\a"
+
+# Play shell intro
+#intro="/Users/zero-one/Music/shell/hello_friend_cut_reverb.flac"
+#if [ -f $intro ]; then
+#    afplay $intro &
+#    disown $!
+#fi
+
+
+#printf "${Green} \n"
+
+# Stylish welcome message
+#for ((x=0; x<${#welcome}; x++)); do
+#	printf "${welcome:$x:1}"
+#    #printf ' %.0s' $(seq 0 $x)
+#	sleep 0.01
+#done
+#printf "${NC}\n"
+
+
+
+#-------------------------------------------------------------
+# Prompt
+#-------------------------------------------------------------
+
+# If id command returns zero, you have root access.
+if [ $(id -u) -eq 0 ]; then
+    # Root
+    PS1="${TITLEBAR}${LGrey} [${Red} root${Green} \w ${LGrey}]${NC} "
+else
+    # Normal
+    PS1="${TITLEBAR}${LGrey} [${Purple} John${Green} \w ${LGrey}]${NC} "
+fi
