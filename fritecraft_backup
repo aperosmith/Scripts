@@ -18,11 +18,21 @@ date=$(date +"%y-%m-%d")
 
 # Afficher un texte, en couleur et retirer la couleur
 echo -e "${PURPLE}Sauvegarde du serveur !${NC}"
+# Notification Discord du début de sauvegarde
+python3 /root/discord.py ":information_source: Sauvegarde du serveur en cours... :hourglass:"
+
+# Calcul espace libre
+DISQUE=$(df --output=avail / -H | grep [0-9])
+python3 /root/discord.py ":information_source: $DISQUE de libre, 20G minimum requis pour sauvegarde :floppy_disk:"
 
 #Compresser le serveur
 echo -e "${BLUE} Compression des plugins en cours... ${NC}"
-tar -czvf $backup_path/backup_server-"$date.tar.gz" /home/minecraft/fritecraft/ --exclude 'tiles/*'  --exclude '_worlds-archives/*'
+#tar -czvf $backup_path/backup_server-"$date.tar.gz" /home/minecraft/fritecraft/ --exclude 'tiles/*'  --exclude '_worlds-archives/*'
 echo -e "${PURPLE} Serveur sauvegardé !${NC}"
+
+#Notification Discord de sauvegarde avec taille
+ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
+python3 /root/discord.py ":white_check_mark: backup_server-$date.tar.gz      $ARCHIVE"
 
 #Compresser les mondes
 #echo -e "${BLUE} Compression des mondes en cours... ${NC}"
@@ -31,6 +41,9 @@ echo -e "${PURPLE} Serveur sauvegardé !${NC}"
 
 #Sauvergarder la base de données
 echo -e "${BLUE} Sauvegarde de la base de données en cours... ${NC}"
-mysqldump --all-databases > $backup_path/backup_base-$date.sql -u $USERNAME -p$PASSWORD
+#mysqldump --all-databases > $backup_path/backup_base-$date.sql -u $USERNAME -p$PASSWORD
 echo -e "${PURPLE} Base de données sauvegardée !${NC}"
 
+# Notification Discord de la BDD
+BDD=$(du -h /home/minecraft/backups/*.sql -a | cut -d / -f1 | tail -n 1)
+python3 /root/discord.py ":white_check_mark: backup_base-$date.sql            $BDD"
