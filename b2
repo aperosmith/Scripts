@@ -1,0 +1,2 @@
+#!/bin/bash
+b2 sync /root/youtube-dl/favoris b2://Ventouz-youtube/favoris >> /var/log/cron/youtube.log
