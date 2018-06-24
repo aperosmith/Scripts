@@ -267,8 +267,8 @@ TITLEBAR='\[\033]0;[\u] - [${SHELL} - \V]\007\]'
 # If id command returns zero, you have root access.
 if [ $(id -u) -eq 0 ]; then
     # Root
-    PS1="${TITLEBAR}${LGrey} [${Red} root${Green} \w ${LGrey}]${NC} "
+    PS1="${TITLEBAR}${LGrey} [${Red}root${Green} \w${LGrey}]${NC} "
 else
     # Normal
-    PS1="${TITLEBAR}${LGrey} [${Red}John${Green} \w${LGrey}]${NC} "
+    PS1="${TITLEBAR}${LGrey} [${Yellow}John${Green} \w${LGrey}]${NC} "
 fi
