@@ -143,6 +143,8 @@ alias c='clear'         # Clear the screen
 
 alias root='sudo -i'    # Root shell
 
+alias frite='ssh root@fritecraft.fr'
+alias hades='ssh root@hades.local -p 666'
 
 
 #-------------------------------------------------------------
