@@ -135,7 +135,15 @@ alias rmr='rm -v -r -f'	# Remove directory verbose
 
 alias o='subl'			# Open sublime
 
-alias ..='cd ..'		# Go back to previous directory
+cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+alias .6='cd ../../../../../../'            # Go back 6 directory levels
+
 
 alias k='kill $!'       # Kill lhe last process opened
 
