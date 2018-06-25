@@ -234,22 +234,6 @@ function refresh()
 }
 
 
-# Play song
-function play()
-{
-    afplay "/Users/zero-one/Music/shell/m83_intro.mp3" &
-    disown $! >/dev/null
-    song=$!
-} &> /dev/null
-
-
-# Stop song
-function stop()
-{
-    k $song
-}
-
-
 # Create standard .sh file
 function msh()
 {
