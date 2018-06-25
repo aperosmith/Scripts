@@ -52,7 +52,7 @@ then
 
         #Sauvergarder la base de données
         echo -e "${BLUE} Sauvegarde de la base de données en cours... ${NC}"
-        #mysqldump --all-databases > $backup_path/backup_base-$date.sql -u $USERNAME -p$PASSWORD
+        mysqldump --all-databases > $backup_path/backup_base-$date.sql -u $USERNAME -p$PASSWORD
         echo -e "${PURPLE} Base de données sauvegardée !${NC}"
 
         # Notification Discord de la BDD
