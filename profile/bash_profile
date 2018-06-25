@@ -184,6 +184,7 @@ alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listenin
 alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rules inc/ blocked IPs
 
 alias apacheRestart='service apache2 restart'           # apacheRestart:    Restart Apache
+alias editHosts='sudo nano /etc/hosts'                  # editHosts:        Edit /etc/hosts file
 
 
 #-------------------------------------------------------------
