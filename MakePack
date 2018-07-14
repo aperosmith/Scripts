@@ -1,0 +1,28 @@
+#!/bin/bash
+
+date=$(date +"%y-%m-%d")
+
+cd /home/minecraft/fritecraft/
+
+#Compresser en .zip
+rm Fritecraft_Items.zip
+zip -r1 Fritecraft_Items.zip /home/minecraft/fritecraft/Fritecraft_Items/
+cp Fritecraft_Items.zip /var/www/Fritecraft_Items.zip
+cp Fritecraft_Items.zip /home/minecraft/packs/Fritecraft_Items-$date.zip
+
+#Calculer SHA1
+sha1sum Fritecraft_Items.zip | sed -r 's/.{22}$//' > items.sha1
+
+#Ajouter SHA1 dans server.properties
+sed -i '/resource-pack-sha1=/d' server.properties
+SHA1=$(cat items.sha1)
+echo -e "resource-pack-sha1=$SHA1" >> server.properties
+
+#Export pour téléchargement
+
+b2 upload-file Ventouz-frite ./Fritecraft_Items.zip Fritecraft_Items.zip
+b2 get-download-url-with-auth Ventouz-frite Fritecraft_Items.zip > download.b2
+
+sed -i '/resource-pack=/d' server.properties
+DOWNLOAD=$(cat download.b2)
+echo -e "resource-pack=$DOWNLOAD" >> server.properties
