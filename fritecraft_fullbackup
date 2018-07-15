@@ -28,46 +28,22 @@ python3 /root/discord.py ":information_source: $DISQUE Go de libre"
 if [ $DISQUE -gt 20 ]
 then
         #Compresser le serveur
-        cd /home/minecraft/fritecraft
         echo -e "${BLUE} Compression des plugins en cours... ${NC}"
-        tar -czvf $backup_path/backup_server-"$date.tar.gz" \
-        ./plugins/ \
-        ./data-storage/ \
-        ./crash reports/ \
-        ./timings/ \
+        tar -czvf $backup_path/backup_server-"$date.tar.gz" /home/minecraft/fritecraft/ \
         --exclude 'tiles/*' \
         --exclude '_worlds-archives/*' \
         --exclude '.git/*' \
         --exclude 'orebfuscator_cache/*' \
         --exclude 'Orion/*' \
         --exclude 'dynmap/*' \
+        --exclude 'timings/*' \
+        --exclude 'crash-reports/*' \
         --exclude '_archive/*'
-
         echo -e "${PURPLE} Serveur sauvegardé !${NC}"
 
-
-
-        echo -e "${BLUE} Compression des mondes en cours... ${NC}"
-
-        tar -czvf $backup_path/backup_bouquenia-"$date.tar.gz" ./Bouquenia/
+        #Notification Discord de sauvegarde avec taille
         ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
-        python3 /root/discord.py ":white_check_mark: backup_bouquenia-$date.tar.gz      $ARCHIVE"
-
-        tar -czvf $backup_path/backup_bouquenia_nether-"$date.tar.gz" ./Bouquenia_nether/
-        ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
-        python3 /root/discord.py ":white_check_mark: backup_bouquenia_nether-$date.tar.gz      $ARCHIVE"
-
-        tar -czvf $backup_path/backup_bouquenia_the_end-"$date.tar.gz" ./Bouquenia_the_end/
-        ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
-        python3 /root/discord.py ":white_check_mark: backup_bouquenia_the_end-$date.tar.gz      $ARCHIVE"
-
-        tar -czvf $backup_path/backup_pitman-"$date.tar.gz" ./Pitman/
-        ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
-        python3 /root/discord.py ":white_check_mark: backup_pitman-$date.tar.gz      $ARCHIVE"
-
-        tar -czvf $backup_path/backup_HUB-"$date.tar.gz" ./HUB/
-        ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
-        python3 /root/discord.py ":white_check_mark: backup_hub-$date.tar.gz      $ARCHIVE"
+        python3 /root/discord.py ":white_check_mark: backup_server-$date.tar.gz      $ARCHIVE"
 
         #Compresser les mondes
         #echo -e "${BLUE} Compression des mondes en cours... ${NC}"
@@ -81,7 +57,7 @@ then
 
         # Notification Discord de la BDD
         BDD=$(du -h /home/minecraft/backups/*.sql -a | cut -d / -f1 | tail -n 1)
-        #python3 /root/discord.py ":white_check_mark: backup_base-$date.sql            $BDD"
+        python3 /root/discord.py ":white_check_mark: backup_base-$date.sql            $BDD"
 
 
 else
