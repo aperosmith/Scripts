@@ -36,14 +36,10 @@ then
         ./crash reports/ \
         ./timings/ \
         --exclude 'tiles/*' \
-        --exclude '_worlds-archives/*' \
-        --exclude '.git/*' \
-        --exclude 'orebfuscator_cache/*' \
-        --exclude 'Orion/*' \
-        --exclude 'dynmap/*' \
-        --exclude '_archive/*'
 
         echo -e "${PURPLE} Serveur sauvegardé !${NC}"
+        ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)        
+        sleep 5
 
 
 
@@ -52,22 +48,27 @@ then
         tar -czvf $backup_path/backup_bouquenia-"$date.tar.gz" ./Bouquenia/
         ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
         python3 /root/discord.py ":white_check_mark: backup_bouquenia-$date.tar.gz      $ARCHIVE"
+        sleep 5
 
         tar -czvf $backup_path/backup_bouquenia_nether-"$date.tar.gz" ./Bouquenia_nether/
         ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
         python3 /root/discord.py ":white_check_mark: backup_bouquenia_nether-$date.tar.gz      $ARCHIVE"
+        sleep 5
 
         tar -czvf $backup_path/backup_bouquenia_the_end-"$date.tar.gz" ./Bouquenia_the_end/
         ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
         python3 /root/discord.py ":white_check_mark: backup_bouquenia_the_end-$date.tar.gz      $ARCHIVE"
+        sleep 5
 
         tar -czvf $backup_path/backup_pitman-"$date.tar.gz" ./Pitman/
         ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
         python3 /root/discord.py ":white_check_mark: backup_pitman-$date.tar.gz      $ARCHIVE"
+        sleep 5
 
         tar -czvf $backup_path/backup_HUB-"$date.tar.gz" ./HUB/
         ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
         python3 /root/discord.py ":white_check_mark: backup_hub-$date.tar.gz      $ARCHIVE"
+        sleep 5
 
         #Compresser les mondes
         #echo -e "${BLUE} Compression des mondes en cours... ${NC}"
