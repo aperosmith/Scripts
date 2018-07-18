@@ -286,7 +286,7 @@ function msh()
     if [ "$1" ]; then
         if [ ! -f "$1.sh" ]; then
             printf "${Green}Creating ${NC}$1\n"
-            echo "#!/usr/local/bin/bash" > $1
+            echo "#!/bin/bash" > $1
             echo "# " >> $1
             chmod +x $1
             nano $1
