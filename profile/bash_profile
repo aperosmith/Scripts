@@ -136,8 +136,6 @@ alias mv='mv -v -f'		# Move vebose
 alias rm='rm -v -f'     # Remove verbose without asking
 alias rmr='rm -v -r -f'	# Remove directory verbose
 
-alias o='subl'			# Open sublime
-
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
@@ -291,7 +289,7 @@ function msh()
             echo "#!/usr/local/bin/bash" > $1
             echo "# " >> $1
             chmod +x $1
-            o $1
+            nano $1
         else
             printf "${Green}File already exist.\n"
         fi
