@@ -58,6 +58,7 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=~/bin:$PATH
 export PATH=/opt/metasploit-framework/bin:$PATH #Msconsole
+export PATH=~/github/Scripts/:$PATH
 
 # Personal folders
 export web=/Applications/MAMP/htdocs
