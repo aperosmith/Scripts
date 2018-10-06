@@ -129,6 +129,8 @@ alias lu='ls -ltur'		# Sort by/show access time,most recent last.
 alias lr='ls -RAl'		# Recursive ls show hidden files and info
 #alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 
+alias sizes='du -m --max-depth 1 | sort -rn'   # List all directories and sort by size
+
 
 alias cp='cp -v'		# Copy vebose mode
 alias cpr='cp -v -r'	# Copy a directory verbose
