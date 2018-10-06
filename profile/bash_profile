@@ -5,12 +5,6 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# Check version of BASH
-if [ "${BASH_VERSION%.*}" \< "4.4" ]; then
-    echo "You need to upgrade your bash."
-fi
-
-
 
 #-------------------------------------------------------------
 # Some settings
@@ -61,9 +55,7 @@ export PATH=/opt/metasploit-framework/bin:$PATH #Msconsole
 export PATH=~/github/Scripts/:$PATH
 
 # Personal folders
-export web=/Applications/MAMP/htdocs
-export coding=~/coding
-export hub=~/Documents/GitHub/
+export web=/var/www/html
 export logs=/var/log
 export frite=/home/minecraft/fritecraft
 
