@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#changement
 #Login MySQL
 USERNAME=$(cat /root/username)
 PASSWORD=$(cat /root/password)
@@ -38,7 +38,7 @@ then
         --exclude 'tiles/*' \
 
         echo -e "${PURPLE} Serveur sauvegardé !${NC}"
-        ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)        
+        ARCHIVE=$(du -h /home/minecraft/backups/*.gz -a | cut -d / -f1 | tail -n 1)
         sleep 5
 
 
