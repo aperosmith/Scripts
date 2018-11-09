@@ -20,3 +20,6 @@ cd /var/www_beta && git pull https://github.com/fritecraft/Web >> /var/log/cron/
 
 # Pull les fichiers pour le portfolio de Loic Fallon
 cd /var/www_fallonloic && git pull https://github.com/fallonloicc/CV
+
+# Pull les fichiers pour le portfolio de Cyndie
+cd /var/www_cyndie/html && git pull https://github.com/CyndieL/Portfolio
