@@ -1,5 +1,5 @@
 #!/bin/bash
-#changement
+
 #Login MySQL
 USERNAME=$(cat /root/username)
 PASSWORD=$(cat /root/password)
