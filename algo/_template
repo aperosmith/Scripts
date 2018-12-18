@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#Declaration des variables
+declare A
+echo -e "Veuillez saisir le nombre A :"
+read A
+
+
+
+
+
+
+#Boucle
+while [ $VARIABLE != 0 ]; do
+  echo "$A"
+  let "A = A + 1"
+done
+
+
+#Afficher le résultat final
+#echo -e ----------------------
+#echo -e
+echo -e "Résultat = ${CHAINE}"
+#echo -e
+#echo -e
+#echo -e ----------------------
