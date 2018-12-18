@@ -22,11 +22,11 @@ while [ $DECIMAL != 0 ]; do
     DECIMAL=$((DECIMAL / BASE))
 
     #Determiner le caractere hexadecimal par rapport au reste et au caractères enregistrés
-#    digit=${HEX_DIGITS:$reste:1}
+    digit=${HEX_DIGITS:$reste:1}
 
     #Ajouter le caractere hexadecimal à la chaine de caractères hexa
-#    CHAINE="${digit}${CHAINE}"
-    CHAINE="${reste}${CHAINE}"
+    CHAINE="${digit}${CHAINE}"
+#    CHAINE="${reste}${CHAINE}"
 
 
 #Fin de la boucle quand la variable DECIMAL est 0
