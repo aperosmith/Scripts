@@ -1,6 +1,7 @@
 #!/bin/bash
 while (( 1 != 0 ))
 do
-   echo "$A"
+   echo "La valeur de la variable A est $A"
    let "A = A + 1"
+   sleep 0.1
 done
