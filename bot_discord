@@ -1,4 +1,0 @@
-#!/bin/bash
-declare var
-var=$(df --output=avail -h / | grep '[0-9]')
-python3 /root/discord.py "> Sauvegarde ok --> **$var** :package:"
