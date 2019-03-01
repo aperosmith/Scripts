@@ -1,3 +1,0 @@
-#!/bin/bash
-b2 sync /root/youtube-dl/favoris b2://Ventouz-youtube/favoris >> /var/log/cron/b2-youtube.log
-b2 sync /home/minecraft/backups b2://Ventouz-frite/backups >> /var/log/cron/b2-fritecraft.log
