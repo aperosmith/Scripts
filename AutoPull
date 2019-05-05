@@ -4,8 +4,8 @@
 # cd /home/minecraft/fritecraft && git pull
 
 # Pull les fichiers pour le portfolio
-echo "$(date +%y/%m/%d-%Hh%M)" >> /var/log/cron/github_portfolio.log
-cd /var/www_cv && git pull https://github.com/Ventouz/Portfolio >> /var/log/cron/github_portfolio.log 2>&1
+#echo "$(date +%y/%m/%d-%Hh%M)" >> /var/log/cron/github_portfolio.log
+#cd /var/www_cv && git pull https://github.com/Ventouz/Portfolio >> /var/log/cron/github_portfolio.log 2>&1
 
 # Pull les fichiers pour le site de ecommerce
 # cd /var/www_commerce && git pull
@@ -15,14 +15,14 @@ echo "$(date +%y/%m/%d-%Hh%M)" >> /var/log/cron/github_scripts.log
 cd /root/Scripts/ && git pull https://github.com/Ventouz/Scripts >> /var/log/cron/github_scripts.log 2>&1
 
 # Pull les fichiers pour le portfolio
-echo "$(date +%y/%m/%d-%Hh%M)" >> /var/log/cron/github_web_fritecraft.log
-cd /var/www_beta && git pull https://github.com/fritecraft/Web >> /var/log/cron/github_web_fritecraft.log 2>&1
+#echo "$(date +%y/%m/%d-%Hh%M)" >> /var/log/cron/github_web_fritecraft.log
+#cd /var/www_beta && git pull https://github.com/fritecraft/Web >> /var/log/cron/github_web_fritecraft.log 2>&1
 
 # Pull les fichiers pour le portfolio de Loic Fallon
 cd /var/www_fallonloic && git pull https://github.com/fallonloicc/CV
 
 # Pull les fichiers pour le portfolio de Cyndie
-cd /var/www_cyndie/html && git pull https://github.com/CyndieL/Portfolio
+#cd /var/www_cyndie/html && git pull https://github.com/CyndieL/Portfolio
 
 # Pull les fichiers pour le portfolio de Julien
 cd /var/www_julien/html && git pull https://github.com/YopDark/portfolio
