@@ -1,7 +1,8 @@
 
+Copier un dossier distant
 
+    rsync -rhvupa root@XX.XX.XX.XX:/root/ /root/
 
-> Written with [StackEdit](https://stackedit.io/).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzMwOTk4MTE2XX0=
+eyJoaXN0b3J5IjpbMTk1OTAyMTA4M119
 -->
