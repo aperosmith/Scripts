@@ -19,7 +19,7 @@ headers ['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:71.0)
 
 # IP Proxy SQUID
 # proxy = {'http': 'EFFICOM:EFFICOM@142.93.230.147'}
-proxy = {'http': '142.93.230.147'}
+proxy = {'http': 'localhost'}
 
 class GetHandler(BaseHTTPRequestHandler):
 	def do_GET(self):
@@ -42,7 +42,7 @@ class GetHandler(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-	server = HTTPServer(('localhost', 8123), GetHandler)
+	server = HTTPServer(('localhost', 80), GetHandler)
 	server.serve_forever()
 
 
