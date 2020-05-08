@@ -1,0 +1,34 @@
+{
+ [
+   {
+       "BIN":"/usr/bin/java",
+       "USER":"root",
+       "RESTART": "yes/no",
+       "LOGPATH": "/var/log/watchdogs",
+       "ARGS":"tomcat"
+       "PORT": 
+       [
+           {
+
+           },
+       ],
+       "CRITICALITY": "WARNING/HIGH/LOW",
+       "WATCHTIME":5
+   },
+   {
+       "BIN":"/usr/bin/httpd",
+       "USER":"root",
+       "RESTART": "yes/no",
+       "LOGPATH": "/var/log/watchdogs",
+       "ARGS":"tomcat",
+       "PORT": 
+       [
+           {
+               
+           },
+       ],
+       "CRITICALITY": "WARNING/HIGH/LOW",
+       "WATCHTIME":3
+   }
+ ]
+}

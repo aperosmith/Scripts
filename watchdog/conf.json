@@ -1,0 +1,18 @@
+{
+  "process": [
+    {
+      "apache2": {
+        "BIN": "/usr/sbin/apache2",
+        "USER": "www-data",
+        "ARGS": "-k start",
+        "WATCHTIME": "60"
+      },
+      "mysql": {
+        "BIN": "/usr/sbin/mysqld",
+        "USER": "mysql",
+        "ARGS": "",
+        "WATCHTIME": "10"
+      }
+    }
+  ]
+}
