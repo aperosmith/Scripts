@@ -1,41 +1,30 @@
 #!/usr/bin/env python
+import os
 import json
+import logging
+import time
+import subprocess
 
-with open('conf.json') as config_file:
-        config = json.load(config_file)
+logging.basicConfig(filename='/var/log/watchdog.log',level=logging.DEBUG,format='%(asctime)s %(message)s')
 
+def check(p):
+    pname = p['NAME']
+    ps = subprocess.check_output(['ps', '-A'])
+    if pname in str(ps):
+        logging.info(p['NAME'] + ' is up and running!')
+    else:
+        logging.warning(p['NAME'] + ' is dead! Restarting ...')
+        subprocess.run([p['BIN'], p['ARGS']])
 
+def watchdog(p):
+    check(p)
+    time.sleep(p['WATCHTIME'])
+    watchdog(p)
 
-
-#for i in config:
-#print(config.process[0])
-
-
-#       for p in config['process']:
-#               print('BIN: ' + p['BIN'])
-#               print('USER: ' + p['USER'])
-#               print('ARGS: ' + p['ARGS'])
-#               print('')
-##      process = config['process']
-#       height = config['height']
-#       print(width)
-#       print(process)
-
-
-
-#       obj = json.loads(data)
-#       print("usd: " + str(obj['BIN']))
-#       print("eur: " + str(obj['ARGS']))
-#       print("gbp: " + str(obj['USER']))
-
-
-
-#    for p in data['process']:
- #       print('BIN: ' + p['BIN'])
-  #      print('USER: ' + p['USER'])
-   #     print('ARGS: ' + p['ARGS'])
-    #    print('')
-
-#with open('watchdog.json', 'r') as f:
-#    array = json.load(f)
-#print (array)
+with open('watchdog.json') as config_file:
+    config = json.load(config_file)
+for p in config['process']:
+    pid = os.fork()
+    if pid != 0:
+        print('Lancement du watchdog pour : ' + p['NAME'])
+        watchdog(p)

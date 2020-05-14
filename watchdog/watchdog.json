@@ -1,33 +1,23 @@
 {
- [
+  "process":  [
    {
-       "BIN":"/usr/bin/java",
+       "NAME":"apache2",
+       "BIN":"/bin/zsh",
        "USER":"root",
-       "RESTART": "yes/no",
+       "RESTART": "yes",
        "LOGPATH": "/var/log/watchdogs",
-       "ARGS":"tomcat"
-       "PORT": 
-       [
-           {
-
-           },
-       ],
-       "CRITICALITY": "WARNING/HIGH/LOW",
+       "ARGS":"tomcat",
+       "CRITICALITY": "HIGH",
        "WATCHTIME":5
    },
    {
-       "BIN":"/usr/bin/httpd",
+       "NAME":"apache2",
+       "BIN":"/bin/sh",
        "USER":"root",
-       "RESTART": "yes/no",
+       "RESTART": "yes",
        "LOGPATH": "/var/log/watchdogs",
        "ARGS":"tomcat",
-       "PORT": 
-       [
-           {
-               
-           },
-       ],
-       "CRITICALITY": "WARNING/HIGH/LOW",
+       "CRITICALITY": "WARNING",
        "WATCHTIME":3
    }
  ]
