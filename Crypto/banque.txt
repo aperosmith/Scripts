@@ -1,0 +1,30 @@
+
+Déroulement
+Le client C remplit le e-cheque avec le montant dû et l’envoie au site S.
+>    C ajoute valeur du cheque = valeur commande
+>    C ajoute valeur du cheque chiffré avec KpubB
+>    C chiffre cheque avec KprivC
+>    C envoie echeque à S
+
+Le site S vérifie que le montant et le nom sont corrects puis l’envoie à la banque B en vue du paiement.
+>    S déchiffre cheque avec KpubC
+>    S vérifie valeur cheque = valeur commande
+>    S ne peut pas modifier hash(valeur cheque) car ne peut pas rechiffrer le cheque avec KprivC ni KprivS
+>    Mais S peut vérifier que C a bien émi le cheque car a été chiffré avec KprivC que seul C possède
+>    S envoie cheque dans le meme etat à B
+
+La banque B vérifie que le e-chèque n’a pas déjà été utilisé et qu’il n’est pas volé. La banque B renvoie alors au site S la validation du paiement ou son refus.
+>    B déchiffre cheque avec KpubC
+>    Si cheque OK, ça veut dire que C a signé avec KprivC donc cheque n'est pas volé (non répudiation)
+>    B vérifie que numCheque n'as pas été utilisé, que le montant est OK, et marque le cheque comme utilisé (base de donnée)
+>    B envoie validation a S en chiffrant message avec KpubS + signature KprivC, et une validation pour C chiffrée avec KpubC
+>    B envoie montant validé à S, chiffré avec KprivB
+
+
+Le site S réceptionne la réponse de la banque et transmet ensuite au client C la validation de la commande (si le paiement est accepté) ou son refus (si le paiement est refusé).
+>    S recoit validation de B, déchiffre avec KprivS : la commande est validée
+>    S valide le paiement en déchiffrant avec KpubB et envoie réponse au client
+
+Le client C réceptionne la réponse et doit être assuré que le montant n’a pas été modifié en cours de route.
+>    C recoit validation paiement transmise à S par B, peut déchiffrer avec KprivC
+>    C recoit validation montant transmise a S par B, et peut vérifier que B a bien signé en déchiffrant avec KpubB et donc S n'a pas modifié montant
