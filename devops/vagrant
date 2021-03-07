@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/buster64"
+  config.vm.network "forwarded_port", guest: 80, host: 8081
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.memory = "1024"
+    vb.cpus = "1"
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+  config.ssh.private_key_path = "~/.ssh/id_rsa"
+  config.ssh.forward_agent = true
+  config.ssh.username = 'vagrant'
+  config.ssh.password = 'vagrant'
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+  end
+end
+
+#  config.vm.provision "shell", inline: <<-SHELL
+#      apk update
+#      apk add apache2 php$phpverx-apache2
+#      cd /var/www/localhost/htdocs/
+#      echo "<?php
+#      phpinfo();
+#      ?>" > index.php
+#      sudo service apache2 restart
+#  SHELL
+#end
