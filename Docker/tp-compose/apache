@@ -1,0 +1,7 @@
+FROM debian:latest
+RUN apt-get update && apt-get install -y apache2
+
+COPY httpd-vhosts.conf ${APACHE_ROOT_DIR}/conf/extra/httpd-vhosts.conf
+COPY httpd.conf /etc/apache2
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
